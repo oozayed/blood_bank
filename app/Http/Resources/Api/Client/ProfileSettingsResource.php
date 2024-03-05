@@ -18,12 +18,14 @@ class ProfileSettingsResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'phone' => $this->phone,
-            'password' => $this->password,
-            'date of birth' => $this->d_o_b,
-            'blood type' => $this->bloodType->name,
+            'date_of_birth' => $this->d_o_b,
+            'blood_type_id' => $this->bloodType->id,
+            'blood_type' => $this->bloodType->name,
+            'city_id' => $this->city->id,
             'city' => $this->city->name,
+            'governorate_id' => $this->governorate->id,
             'governorate' => $this->governorate->name,
-            'last donation date' => $this->last_donation_date
+            'last_donation_date' => $this->last_donation_date
         ];
     }
 }

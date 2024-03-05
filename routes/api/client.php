@@ -63,5 +63,6 @@ Route::controller(ProfileSettingsController::class)->middleware('auth:sanctum')-
 
 //notification
 Route::controller(NotificationController::class)->middleware('auth:sanctum')->group(function () {
+    Route::post('notification-settings','settings');
     Route::get('notifications','index');
 });

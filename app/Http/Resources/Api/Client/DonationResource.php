@@ -19,14 +19,14 @@ class DonationResource extends JsonResource
 
 
         return [
-        'id' => $this->id,
-        'patient_name' => $this->patient_name,
-        'hospital_name' => $this->hospital_name,
-        'city_name' => $this->city->name,
-        'blood_type_name' => $this->bloodType->name ?? "",
-        'details' => $this->details,
-        'phone' => $this->patient_phone,
-            'bloodType' => $this->whenLoaded('bloodType',$this->bloodType)
-    ];
+            'id' => $this->id,
+            'patient_name' => $this->patient_name,
+            'hospital_name' => $this->hospital_name,
+            'city_name' => $this->city->name,
+            'blood_type_name' => $this->bloodType ? $this->bloodType->name : null,
+            'details' => $this->details,
+            'phone' => $this->patient_phone,
+            'bloodType' => $this->whenLoaded('bloodType', $this->bloodType)
+        ];
     }
 }

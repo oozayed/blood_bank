@@ -38,12 +38,12 @@ class Clients extends Model
 
     public function bloodTypes()
     {
-        return $this->belongsToMany('App\Models\BloodType');
+        return $this->hasMany('App\Models\BloodTypeClient', 'client_id');
     }
 
     public function governorates()
     {
-        return $this->belongsToMany('App\Models\Governorates');
+        return $this->hasMany('App\Models\ClientGovernorate', 'client_id');
     }
 
     public function contacts()
