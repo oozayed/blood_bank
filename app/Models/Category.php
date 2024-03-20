@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Categories extends Model 
+class Category extends Model
 {
 
     protected $table = 'categories';
@@ -13,7 +13,7 @@ class Categories extends Model
 
     public function posts()
     {
-        return $this->hasMany('App\Models\Posts');
+        return $this->hasMany('App\Models\Post');
     }
 
 }

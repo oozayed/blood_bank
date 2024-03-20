@@ -8,16 +8,17 @@ class BloodType extends Model
 {
 
     protected $table = 'blood_types';
+    protected $fillable = ['name'];
     public $timestamps = true;
 
     public function bloodClients()
     {
-        return $this->hasMany('App\Models\Clients');
+        return $this->hasMany('App\Models\Client');
     }
 
     public function clients()
     {
-        return $this->belongsToMany('App\Models\Clients');
+        return $this->belongsToMany('App\Models\Client');
     }
 
     public function donationRequests()

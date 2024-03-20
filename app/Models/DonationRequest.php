@@ -13,17 +13,17 @@ class DonationRequest extends Model
 
     public function notifications()
     {
-        return $this->hasMany('App\Models\Notifications');
+        return $this->hasMany('App\Models\Notification');
     }
 
     public function client()
     {
-        return $this->belongsTo('App\Models\Clients');
+        return $this->belongsTo('App\Models\Client');
     }
 
     public function city()
     {
-        return $this->belongsTo('App\Models\Cities');
+        return $this->belongsTo('App\Models\City');
     }
 
     public function bloodType()

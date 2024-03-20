@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\Client;
 
 use App\Http\Controllers\Controller;
-use App\Models\Clients;
+use App\Models\Client;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -13,7 +13,7 @@ class ResetPasswordController extends Controller
     use ResponseTrait;
     public function checkIfPhoneIsExist(Request $request): JsonResponse
     {
-        $client = Clients::query()->where('phone', $request->phone)->first();
+        $client = Client::query()->where('phone', $request->phone)->first();
         if ($client) {
             $client->update([
                 'pin_code' => rand(100000, 999999)
@@ -26,7 +26,7 @@ class ResetPasswordController extends Controller
     }
     public function setNewPassword(Request $request): JsonResponse
     {
-        $client = Clients::query()->where('phone', $request->phone)->first();
+        $client = Client::query()->where('phone', $request->phone)->first();
         if ($client) {
             if ($client->pin_code != $request->pin_code) {
                 return $this->error('Pin Code Not Correct');

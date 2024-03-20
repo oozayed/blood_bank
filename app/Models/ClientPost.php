@@ -16,11 +16,11 @@ class ClientPost extends Model
 
     public function post()
     {
-        return $this->belongsTo('App\Models\Posts');
+        return $this->belongsTo('App\Models\Post');
     }
 
     public function client()
     {
-        return $this->belongsTo('App\Models\Clients');
+        return $this->belongsTo('App\Models\Client');
     }
 }

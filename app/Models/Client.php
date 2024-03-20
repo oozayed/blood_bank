@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
 
-class Clients extends Model
+class Client extends Model
 {
     use HasApiTokens;
 
@@ -23,37 +23,37 @@ class Clients extends Model
 
     public function city()
     {
-        return $this->belongsTo('App\Models\Cities','city_id');
+        return $this->belongsTo('App\Models\City','city_id');
     }
 
     public function governorate(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo('App\Models\Governorates','governorate_id');
+        return $this->belongsTo('App\Models\Governorate','governorate_id');
     }
 
     public function posts()
     {
-        return $this->belongsToMany('App\Models\Posts');
+        return $this->belongsToMany('App\Models\Post');
     }
 
     public function bloodTypes()
     {
-        return $this->hasMany('App\Models\BloodTypeClient', 'client_id');
+        return $this->belongsToMany('App\Models\BloodType','blood_type_client', 'client_id', 'blood_type_id');
     }
 
     public function governorates()
     {
-        return $this->hasMany('App\Models\ClientGovernorate', 'client_id');
+        return $this->belongsToMany('App\Models\Governorate', 'client_governorate', 'client_id', 'governorate_id');
     }
 
     public function contacts()
     {
-        return $this->hasMany('App\Models\Contacts');
+        return $this->hasMany('App\Models\Contact');
     }
 
     public function notifications()
     {
-        return $this->belongsToMany('App\Models\Notifications');
+        return $this->belongsToMany('App\Models\Notification');
     }
 
     public function donationRequests()

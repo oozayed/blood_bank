@@ -14,8 +14,8 @@ Route::controller(GeneralRequestsController::class)->group(function () {
     Route::get('blood-types','bloodTypes');
     Route::get('governorates','governorates');
     Route::get('governorate/{id}/cities','governorateCities');
-    Route::get('settings','settings');
-    Route::get('categories','categories');
+    Route::get('general','settings');
+    Route::get('categories','categories')->middleware('auth:sanctum');
     Route::post('contact-us','contactUs')->middleware('auth:sanctum');
 });
 
@@ -37,7 +37,7 @@ Route::controller(ResetPasswordController::class)->group(function () {
     Route::post('check-if-phone-is-exist','checkIfPhoneIsExist');
 });
 
-//  Posts
+//  Post
 Route::controller(PostController::class)->middleware('auth:sanctum')->group(function () {
     Route::get('get-posts','index');
     Route::post('like-or-dislike-post/{id}','likePost');
@@ -57,12 +57,12 @@ Route::controller(DonationController::class)->middleware('auth:sanctum')->group(
 
 //profile
 Route::controller(ProfileSettingsController::class)->middleware('auth:sanctum')->group(function () {
-    Route::get('profile-settings','show');
-    Route::put('profile-settings','update');
+    Route::get('profile-general','show');
+    Route::put('profile-general','update');
 });
 
 //notification
 Route::controller(NotificationController::class)->middleware('auth:sanctum')->group(function () {
-    Route::post('notification-settings','settings');
+    Route::post('notification-general','settings');
     Route::get('notifications','index');
 });

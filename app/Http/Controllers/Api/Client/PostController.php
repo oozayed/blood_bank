@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\Client\LikedPostResource;
 use App\Http\Resources\Api\Client\PostResource;
 use App\Models\ClientPost;
-use App\Models\Posts;
+use App\Models\Post;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\Request;
 
@@ -16,7 +16,7 @@ class PostController extends Controller
 
     public function index(Request $request)
     {
-        $data = Posts::query()
+        $data = Post::query()
             ->search($request)
             ->with('category')
             ->get();
@@ -28,7 +28,7 @@ class PostController extends Controller
     public function likePost($id)
     {
 
-        $post = Posts::query()->find($id);
+        $post = Post::query()->find($id);
         if ($post) {
             $isLiked = ClientPost::query()->where('client_id', auth()->user()->id)->where('post_id', $id)->first();
             if ($isLiked) {

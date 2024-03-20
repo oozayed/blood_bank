@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Api\Client;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Client\ContactUsRequest;
 use App\Models\BloodType;
-use App\Models\Categories;
-use App\Models\Cities;
-use App\Models\Contacts;
-use App\Models\Governorates;
-use App\Models\Settings;
+use App\Models\Category;
+use App\Models\City;
+use App\Models\Contact;
+use App\Models\Governorate;
+use App\Models\Setting;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -25,7 +25,7 @@ class GeneralRequestsController extends Controller
 
     public function governorates(): JsonResponse
     {
-        $governorates = Governorates::query()
+        $governorates = Governorate::query()
             ->select('id', 'name')
             ->when(\request()->has('search'), function ($q) {
                 return $q->where('name', 'like', '%' . \request()->search . '%');
@@ -44,7 +44,7 @@ class GeneralRequestsController extends Controller
 
     public function governorateCities($id): JsonResponse
     {
-        $cities = Cities::query()
+        $cities = City::query()
             ->select('id', 'name', 'governorate_id')
             ->where('governorate_id', $id)
             ->when(\request()->has('search'), function ($q) {
@@ -59,14 +59,14 @@ class GeneralRequestsController extends Controller
     public function settings(): JsonResponse
     {
 
-        $data = Settings::query()->whereIn('key', ['phone', 'email', 'insta', 'youtube', 'facebook', 'twitter'])->pluck('value', 'key');
-        return $this->data('This is all settings ', $data);
+        $data = Setting::query()->whereIn('key', ['phone', 'email', 'insta', 'youtube', 'facebook', 'twitter'])->pluck('value', 'key');
+        return $this->data('This is all general ', $data);
 
     }
 
     public function categories(): JsonResponse
     {
-        $data = Categories::query()->select('id', 'name')->get();
+        $data = Category::query()->select('id', 'name')->get();
         return $this->data('This is all categories', $data);
     }
 
@@ -75,7 +75,7 @@ class GeneralRequestsController extends Controller
 
         $data = $request->validated();
         $data['client_id'] = auth()->user()->id;
-        Contacts::query()->create($data);
+        Contact::query()->create($data);
         return $this->success('your message is sent successfully');
     }
 

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Contacts extends Model
+class Contact extends Model
 {
 
     protected $table = 'contacts';
@@ -13,7 +13,7 @@ class Contacts extends Model
 
     public function client()
     {
-        return $this->belongsTo('App\Models\Clients');
+        return $this->belongsTo('App\Models\Client');
     }
 
 }

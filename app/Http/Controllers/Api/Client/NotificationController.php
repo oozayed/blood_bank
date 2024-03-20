@@ -7,7 +7,7 @@ use App\Http\Requests\Api\Client\NotificationSettingRequest;
 use App\Models\BloodTypeClient;
 use App\Models\ClientGovernorate;
 use App\Models\DonationRequest;
-use App\Models\Notifications;
+use App\Models\Notification;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -33,7 +33,7 @@ class NotificationController extends Controller
             ->toArray();
 
         // 3 notifications based on no 2
-        $notifications = Notifications::query()->whereIn('donation_request_id', $donation_requests_ids)->select('title', 'content')->get();
+        $notifications = Notification::query()->whereIn('donation_request_id', $donation_requests_ids)->select('title', 'content')->get();
         return $this->data('This is all notifications', $notifications);
     }
 
@@ -61,6 +61,6 @@ class NotificationController extends Controller
         }
 
         DB::commit();
-        return $this->success('notification settings updated successfully');
+        return $this->success('notification general updated successfully');
     }
 }

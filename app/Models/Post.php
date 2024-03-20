@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Posts extends Model
+class Post extends Model
 {
 
     protected $table = 'posts';
@@ -13,12 +13,12 @@ class Posts extends Model
 
     public function clients()
     {
-        return $this->belongsToMany('App\Models\Clients');
+        return $this->belongsToMany('App\Models\Client');
     }
 
     public function category()
     {
-        return $this->belongsTo('App\Models\Categories', 'category_id');
+        return $this->belongsTo('App\Models\Category', 'category_id');
     }
 
     public function scopeSearch($query, $request)

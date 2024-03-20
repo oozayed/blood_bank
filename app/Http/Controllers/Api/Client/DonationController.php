@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Client;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Client\DonationRequest;
 use App\Http\Resources\Api\Client\DonationResource;
+use App\Models\Notification;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\Request;
 use App\Models\DonationRequest as DonationModel;
@@ -34,7 +35,12 @@ class DonationController extends Controller
     {
         $data = $request->validated();
         $data['client_id'] = auth()->user()->id;
-        DonationModel::query()->create($data);
+        $donation = DonationModel::query()->create($data);
+        $notification = new Notification();
+        $notification->title = 'طلب تبرع جديد';
+        $notification->content = 'محتاج متبرع';
+        $notification->donation_request_id = $donation->id;
+        $notification->save();
         return $this->success('donation request created successfully');
     }
 

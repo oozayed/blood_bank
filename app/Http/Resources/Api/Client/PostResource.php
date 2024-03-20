@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources\Api\Client;
 
-use App\Models\Categories;
+use App\Models\Category;
 use App\Models\ClientPost;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;

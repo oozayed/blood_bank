@@ -7,7 +7,7 @@ class CreateSettingsTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('settings', function(Blueprint $table) {
+		Schema::create('general', function(Blueprint $table) {
 			$table->increments('id');
 			$table->timestamps();
 			$table->string('key');
@@ -18,6 +18,6 @@ class CreateSettingsTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('settings');
+		Schema::drop('general');
 	}
 }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\Client;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Client\LoginRequest;
 use App\Http\Requests\Api\Client\RegisterRequest;
-use App\Models\Clients;
+use App\Models\Client;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -21,7 +21,7 @@ class AuthController extends Controller
         // 2 insert to database
         $data = $request->validated();
         $data['password'] = bcrypt($data['password']);
-        $client = Clients::query()->create($data);
+        $client = Client::query()->create($data);
         // 3 generate token
         $token = $client->createToken('auth_token');
         // 4 return response
@@ -34,7 +34,7 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         $data = $request->validated();
-        $client = Clients::query()->where('phone', $data['phone'])->first();
+        $client = Client::query()->where('phone', $data['phone'])->first();
         if ($client) {
             if (Hash::check($data['password'], $client->password)) {
                 $token = $client->createToken('auth_token');

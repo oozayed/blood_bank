@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Settings extends Model 
+class Setting extends Model
 {
 
-    protected $table = 'settings';
+    protected $table = 'general';
     public $timestamps = true;
     protected $fillable = array('key', 'value');
 
