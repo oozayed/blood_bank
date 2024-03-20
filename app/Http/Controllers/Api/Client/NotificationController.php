@@ -20,7 +20,7 @@ class NotificationController extends Controller
     public function index()
     {
         $user = auth('sanctum')->user();
-        // 1 - blood type ids and governorate ids of the user
+        // 1 - blood type ids and governorate ids of the user     /////
         $blood_types_ids = $user->bloodTypes()->pluck('blood_type_id')->toArray();
         $governorates_ids = $user->governorates()->pluck('governorate_id')->toArray();
 
