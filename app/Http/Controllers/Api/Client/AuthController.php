@@ -35,7 +35,8 @@ class AuthController extends Controller
     {
         $data = $request->validated();
         $client = Client::query()->where('phone', $data['phone'])->first();
-        if ($client) {
+        if ($client && $client->status === 1) {
+
             if (Hash::check($data['password'], $client->password)) {
                 $token = $client->createToken('auth_token');
                 // 4 return response

@@ -1,12 +1,12 @@
 @extends('web.admin.app')
-@section('title','Blood Types')
-@section('pageHeader','Blood Types')
+@section('title','Clients')
+@section('pageHeader','Clients')
 @section('content')
 
-    <div class="card container mb-4 p-4 shadow bg-white ">
+    <div class="card card-primary mb-4 p-4 shadow bg-white ">
         @include('flash::message')
         <div class="table-responsive mt-4">
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered table-hover" id="myTable">
                 <thead>
                 <tr>
                     <th class="text-center" scope="col">#</th>
@@ -22,40 +22,38 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($clients as $client)
-                    <tr>
-                        <th class="text-center"
-                            scope="row">{{ ($clients->currentPage() - 1) * $clients->perPage() + $loop->iteration }}</th>
-                        <td class="text-center">{{$client->name}}</td>
-                        <td class="text-center">{{$client->email}}</td>
-                        <td class="text-center">{{$client->phone}}</td>
-                        <td class="text-center">{{$client->d_o_b}}</td>
-                        <td class="text-center">{{$client->bloodType->name}}</td>
-                        <td class="text-center">{{$client->last_donation_date}}</td>
-                        <td class="text-center">{{$client->city->name}}</td>
-                        <td class="text-center">{{$client->governorate->name}}</td>
-                        <td class="text-center">
-                            <a href="{{route('admin.general.blood-types.edit',$client->id)}}"
-                               class="btn btn-primary">edit</a>
-                            <form style="display: inline" method="POST"
-                                  action="{{route('admin.general.blood-types.destroy',$client->id)}}">
-                                @csrf
-                                @method('DELETE')
-                                <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger">
-                                    delete
-                                </button>
 
-                            </form>
-                        </td>
-
-                    </tr>
-                @endforeach
 
                 </tbody>
             </table>
-            {{ $clients->links() }}
 
         </div>
     </div>
 
 @stop
+@push('scripts')
+    <script>
+        new DataTable('#myTable', {
+            processing: true,
+            "serverSide": true,
+            "ajax": "{{ route('admin.clients.dataTable') }}",
+            "columns": [
+                {"data": null},
+                {"data": "name"},
+                {"data": "email"},
+                {"data": "phone"},
+                {"data": "d_o_b"},
+                {"data": "blood_type.name", "name": "bloodType.name"},
+                {"data": "last_donation_date"},
+                {"data": "city.name", "name": "city.name"},
+                {"data": "governorate.name", "name": "governorate.name"},
+                {"data": "action", "orderable": false, "searchable": false}
+            ],
+            "createdRow": function (row, data, dataIndex) {
+                $('td:eq(0)', row).html(dataIndex + 1);
+            }
+        });
+    </script>
+@endpush
+
+

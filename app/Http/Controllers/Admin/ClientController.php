@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class ClientController extends Controller
 {
@@ -13,56 +14,34 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::query()->paginate(10);
-
-        return view('web.admin.sections.clients.index', compact('clients'));
+        return view('web.admin.sections.clients.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function dataTable(){
+        $data = Client::with('bloodType', 'city', 'governorate')->get();
+        return DataTables::of($data)
+            ->addColumn('action', function ($data) {
+                return view('web.admin.sections.clients.action', compact('data'));
+            })
+
+
+            ->make(true);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    public function status(string $id){
+        $client = Client::findOrFail($id);
+        $client->status = !$client->status;
+        $client->save();
+        flash('Success')->success()->important();
+        return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $client = Client::findOrFail($id);
+
+        $client->delete();
+        flash('Deleted Successfully')->error()->important();
+        return redirect()->back();
     }
 }

@@ -28,6 +28,7 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="{{asset('dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
 <!-- ChartJS -->
 <script src="{{asset('dashboard/plugins/chart.js/Chart.min.js')}}"></script>
 <!-- Sparkline -->
@@ -52,13 +53,9 @@
 <script src="{{asset('dashboard/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('dashboard/dist/js/pages/dashboard.js')}}"></script>
+<script src="https://cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-@if(session('success'))
-    <script>
-        toastr.success("{{session('success')}}")
-    </script>
-    @endif
-
+@stack('scripts')
 </body>
 </html>

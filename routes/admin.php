@@ -40,5 +40,7 @@ Route::prefix('content')->as('content.')->group(function () {
     Route::resource('categories', CategoryController::class)->except('show');
     Route::resource('posts', PostController::class);
 });
-Route::resource('clients', ClientController::class);
+Route::get('clients/data', [ClientController::class, 'dataTable'])->name('clients.dataTable');
+Route::get('clients/status/{client}', [ClientController::class, 'status'])->name('clients.status');
+Route::resource('clients', ClientController::class)->except('show', 'edit', 'update','store','create');
 
