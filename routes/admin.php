@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\ClientController;
+use App\Http\Controllers\admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DonationController;
 use App\Http\Controllers\Admin\Content\{CategoryController, PostController};
 use App\Http\Controllers\Admin\General\{BloodTypeController,
     SettingsController,
@@ -40,7 +42,15 @@ Route::prefix('content')->as('content.')->group(function () {
     Route::resource('categories', CategoryController::class)->except('show');
     Route::resource('posts', PostController::class);
 });
-Route::get('clients/data', [ClientController::class, 'dataTable'])->name('clients.dataTable');
-Route::get('clients/status/{client}', [ClientController::class, 'status'])->name('clients.status');
-Route::resource('clients', ClientController::class)->except('show', 'edit', 'update','store','create');
 
+Route::get('clients/dataTable', [ClientController::class, 'dataTable'])->name('clients.dataTable');
+Route::get('clients/status/{client}', [ClientController::class, 'status'])->name('clients.status');
+Route::resource('clients', ClientController::class)->only('index','destroy');
+
+
+Route::get('contacts/dataTable', [ContactController::class, 'dataTable'])->name('contacts.dataTable');
+Route::resource('contacts', ContactController::class)->only('index','show','destroy');
+
+
+Route::get('donations/dataTable', [DonationController::class,'dataTable'])->name('donations.dataTable');
+Route::resource('donations', DonationController::class)->only('index','show','destroy');

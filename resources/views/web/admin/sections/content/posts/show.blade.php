@@ -2,9 +2,13 @@
 @section('title','Posts')
 @section('pageHeader','Posts')
 @section('content')
+
+
+    <div class="text-left ">
+        <a href="{{ url()->previous() }}" class="btn btn-secondary">Back</a>
+    </div>
     <div class="card mb-3 shadow bg-white ">
-        <div class="text-left mt-3 ml-3"><a href="{{ route('admin.content.posts.index') }}"
-                                  class="btn btn-primary text-left">Back</a></div>
+
         <div class="card-body ">
 
             <p class="card-text" class="text-muted">{{ $post->created_at->diffForHumans() }}</p>

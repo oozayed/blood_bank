@@ -10,14 +10,13 @@
                 <thead>
                 <tr>
                     <th class="text-center" scope="col">#</th>
-                    <th class="text-center" scope="col">Name</th>
-                    <th class="text-center" scope="col">Email</th>
-                    <th class="text-center" scope="col">Phone</th>
-                    <th class="text-center" scope="col">Date Of Birth</th>
+                    <th class="text-center" scope="col">Patient Name</th>
+                    <th class="text-center" scope="col">Patient Phone</th>
+                    <th class="text-center" scope="col">Hospital Name</th>
                     <th class="text-center" scope="col">Blood Type</th>
-                    <th class="text-center" scope="col">Last Donation Date</th>
-                    <th class="text-center" scope="col">City</th>
-                    <th class="text-center" scope="col">Governorate</th>
+                    <th class="text-center" scope="col">Bags Number</th>
+                    <th class="text-center" scope="col">Details</th>
+                    <th class="text-center" scope="col">Created At</th>
                     <th class="text-center" scope="col">Action</th>
                 </tr>
                 </thead>
@@ -36,17 +35,22 @@
         new DataTable('#myTable', {
             processing: true,
             "serverSide": true,
-            "ajax": "{{ route('admin.clients.dataTable') }}",
+            "ajax": "{{ route('admin.donations.dataTable') }}",
             "columns": [
                 {"data": null},
-                {"data": "name"},
-                {"data": "email"},
-                {"data": "phone"},
-                {"data": "d_o_b"},
+                {"data": "patient_name"},
+                {"data": "patient_phone"},
+                {"data": "hospital_name"},
                 {"data": "blood_type.name"},
-                {"data": "last_donation_date"},
-                {"data": "city.name"},
-                {"data": "governorate.name"},
+                {"data": "bags_num"},
+                {"data": "details"},
+                {
+                    data: 'created_at',
+                    render: function(data) {
+                        var date = new Date(data);
+                        return date.toISOString().split('T')[0];
+                    }
+                },
                 {"data": "action", "orderable": false, "searchable": false}
             ],
             "createdRow": function (row, data, dataIndex) {

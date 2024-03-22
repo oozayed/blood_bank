@@ -30,7 +30,10 @@ class DonationRequest extends Model
     {
         return $this->belongsTo('App\Models\BloodType');
     }
-
+    public function governorate()
+    {
+        return $this->belongsTo('App\Models\Governorate');
+    }
     // This scope is to make searching in better way
     public function scopeFilter($query, $request)
     {
