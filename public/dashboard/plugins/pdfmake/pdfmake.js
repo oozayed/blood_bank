@@ -5013,7 +5013,7 @@ function runClearTimeout(marker) {
             return cachedClearTimeout.call(null, marker);
         } catch (e){
             // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            // Some versions of I.E. have different Rules for clearTimeout vs setTimeout
             return cachedClearTimeout.call(this, marker);
         }
     }
@@ -49530,7 +49530,7 @@ function finalReordering(font, glyphs, plan) {
     // o Reorder pre-base reordering consonants:
     //
     // If a pre-base reordering consonant is found, reorder it according to
-    // the following rules:
+    // the following Rules:
     if (tryPref && base + 1 < end) {
       for (var _i23 = base + 1; _i23 < end; _i23++) {
         if (glyphs[_i23].features.pref) {

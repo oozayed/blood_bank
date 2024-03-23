@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DonationController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\Content\{CategoryController, PostController};
 use App\Http\Controllers\Admin\General\{BloodTypeController,
     SettingsController,
@@ -54,3 +55,6 @@ Route::resource('contacts', ContactController::class)->only('index','show','dest
 
 Route::get('donations/dataTable', [DonationController::class,'dataTable'])->name('donations.dataTable');
 Route::resource('donations', DonationController::class)->only('index','show','destroy');
+
+Route::get('change-password', [LoginController::class, 'editPassword'])->name('password.edit');
+Route::post('change-password', [LoginController::class, 'updatePassword'])->name('password.update');

@@ -17,7 +17,7 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
       statementIndentUnit = parserConfig.statementIndentUnit || indentUnit,
       dontAlignCalls = parserConfig.dontAlignCalls,
       // compilerDirectivesUseRegularIndentation - If set, Compiler directive
-      // indentation follows the same rules as everything else. Otherwise if
+      // indentation follows the same Rules as everything else. Otherwise if
       // false, compiler directives will track their own indentation.
       // For example, `ifdef nested inside another `ifndef will be indented,
       // but a `ifdef inside a function block may not be indented.

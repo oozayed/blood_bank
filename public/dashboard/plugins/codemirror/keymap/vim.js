@@ -4189,7 +4189,7 @@
 
     // Translates the replace part of a search and replace from ex (vim) syntax into
     // javascript form.  Similar to translateRegex, but additionally fixes back references
-    // (translates '\[0..9]' to '$[0..9]') and follows different rules for escaping '$'.
+    // (translates '\[0..9]' to '$[0..9]') and follows different Rules for escaping '$'.
     var charUnescapes = {'\\n': '\n', '\\r': '\r', '\\t': '\t'};
     function translateRegexReplace(str) {
       var escapeNextChar = false;

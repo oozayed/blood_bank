@@ -147,6 +147,14 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                                    <a href="{{route('admin.password.edit')}}"
+                                       class="nav-link {{active_route_by_url('admin/change-password*')}} ">
+                                        <i class="bi bi-key nav-icon "></i>
+                                        <p>Change Password</p>
+                                    </a>
+                                </li>
+
 
             </ul>
         </nav>

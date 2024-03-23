@@ -175,7 +175,7 @@ $.validator.addMethod( "bic", function( value, element ) {
 
 /*
  * Código de identificación fiscal ( CIF ) is the tax identification code for Spanish legal entities
- * Further rules can be found in Spanish on http://es.wikipedia.org/wiki/C%C3%B3digo_de_identificaci%C3%B3n_fiscal
+ * Further Rules can be found in Spanish on http://es.wikipedia.org/wiki/C%C3%B3digo_de_identificaci%C3%B3n_fiscal
  *
  * Spanish CIF structure:
  *
@@ -1318,7 +1318,7 @@ $.validator.addMethod( "require_from_group", function( value, element, options )
 	// Store the cloned validator for future validation
 	$fieldsFirst.data( "valid_req_grp", validator );
 
-	// If element isn't being validated, run each require_from_group field's validation rules
+	// If element isn't being validated, run each require_from_group field's validation Rules
 	if ( !$( element ).data( "being_validated" ) ) {
 		$fields.data( "being_validated", true );
 		$fields.each( function() {
@@ -1362,7 +1362,7 @@ $.validator.addMethod( "skip_or_fill_minimum", function( value, element, options
 	// Store the cloned validator for future validation
 	$fieldsFirst.data( "valid_skip", validator );
 
-	// If element isn't being validated, run each skip_or_fill_minimum field's validation rules
+	// If element isn't being validated, run each skip_or_fill_minimum field's validation Rules
 	if ( !$( element ).data( "being_validated" ) ) {
 		$fields.data( "being_validated", true );
 		$fields.each( function() {

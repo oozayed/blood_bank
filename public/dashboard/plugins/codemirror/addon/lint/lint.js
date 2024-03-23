@@ -142,8 +142,8 @@
   function startLinting(cm) {
     var state = cm.state.lint, options = state.options;
     /*
-     * Passing rules in `options` property prevents JSHint (and other linters) from complaining
-     * about unrecognized rules like `onUpdateLinting`, `delay`, `lintOnChange`, etc.
+     * Passing Rules in `options` property prevents JSHint (and other linters) from complaining
+     * about unrecognized Rules like `onUpdateLinting`, `delay`, `lintOnChange`, etc.
      */
     var passOptions = options.options || options;
     var getAnnotations = options.getAnnotations || cm.getHelper(CodeMirror.Pos(0, 0), "lint");

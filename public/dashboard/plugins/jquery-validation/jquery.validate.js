@@ -168,7 +168,7 @@ $.extend( $.fn, {
 			case "add":
 				$.extend( existingRules, $.validator.normalizeRule( argument ) );
 
-				// Remove messages from rules, but allow them to be set separately
+				// Remove messages from Rules, but allow them to be set separately
 				delete existingRules.messages;
 				staticRules[ element.name ] = existingRules;
 				if ( argument.messages ) {
@@ -673,7 +673,7 @@ $.extend( $.validator, {
 					return false;
 				}
 
-				// Select only the first element for each name, and only those with rules specified
+				// Select only the first element for each name, and only those with Rules specified
 				if ( name in rulesCache || !validator.objectLength( $( this ).rules() ) ) {
 					return false;
 				}
@@ -788,7 +788,7 @@ $.extend( $.validator, {
 			if ( normalizer ) {
 				val = normalizer.call( element, val );
 
-				// Delete the normalizer from rules to avoid treating it as a pre-defined method.
+				// Delete the normalizer from Rules to avoid treating it as a pre-defined method.
 				delete rules.normalizer;
 			}
 
@@ -798,7 +798,7 @@ $.extend( $.validator, {
 					result = $.validator.methods[ method ].call( this, val, element, rule.parameters );
 
 					// If a method indicates that the field is optional and therefore valid,
-					// don't mark it as valid when there are no other rules
+					// don't mark it as valid when there are no other Rules
 					if ( result === "dependency-mismatch" && rulesCount === 1 ) {
 						dependencyMismatch = true;
 						continue;

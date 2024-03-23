@@ -10867,7 +10867,7 @@
 		 *    filtering)
 		 *  @param {int} total Total number of rows in the data set, after filtering
 		 *  @param {string} pre The string that DataTables has formatted using it's
-		 *    own rules
+		 *    own Rules
 		 *  @returns {string} The string to be displayed in the information element.
 		 *
 		 *  @dtopt Callbacks
@@ -12569,7 +12569,7 @@
 		 * * `object` - use different data for the different data types requested by
 		 *   DataTables ('filter', 'display', 'type' or 'sort'). The property names
 		 *   of the object is the data type the property refers to and the value can
-		 *   defined using an integer, string or function using the same rules as
+		 *   defined using an integer, string or function using the same Rules as
 		 *   `render` normally does. Note that an `_` option _must_ be specified.
 		 *   This is the default value to use if you haven't specified a value for
 		 *   the data type requested by DataTables.

@@ -23,7 +23,7 @@ missing information from header or with unsupported content, may lead to
 failure in generating the temporary image. Temporary images are required
 mostly on extracting content from SVGs, but this is also where the x/y
 offsets are extracted for each image which will be added. For SVGs in
-particular, their CSS rules have to be applied.
+particular, their CSS Rules have to be applied.
 After all temporary images are generated, they are overlapped using
 getExecuteImgComposition function. This is where the destination canvas
 is set to the proper dimensions. It is then output by composeImages.
@@ -122,7 +122,7 @@ temporary images load their data.
                     rulesList.push(rule.cssText);
                 }
             } catch (e) {
-                console.log('Failed to get some css rules');
+                console.log('Failed to get some css Rules');
             }
         }
         return rulesList;

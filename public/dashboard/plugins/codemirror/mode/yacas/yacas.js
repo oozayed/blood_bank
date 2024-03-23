@@ -93,7 +93,7 @@ CodeMirror.defineMode('yacas', function(_config, _parserConfig) {
       }
     }
 
-    // look for ordered rules
+    // look for ordered Rules
     if (stream.match(/\d+ *#/, true, false)) {
       return 'qualifier';
     }

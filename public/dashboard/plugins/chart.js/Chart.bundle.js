@@ -18953,7 +18953,7 @@ var moment = createCommonjsModule(function (module, exports) {
     }
 
     function daysToMonths (days) {
-        // 400 years have 146097 days (taking into account leap year rules)
+        // 400 years have 146097 days (taking into account leap year Rules)
         // 400 years have 12 months === 4800
         return days * 4800 / 146097;
     }
@@ -19144,7 +19144,7 @@ var moment = createCommonjsModule(function (module, exports) {
     }
 
     function toISOString$1() {
-        // for ISO strings we do not use the normal bubbling rules:
+        // for ISO strings we do not use the normal bubbling Rules:
         //  * milliseconds bubble up until they become hours
         //  * days do not bubble at all
         //  * months bubble up until they become years
