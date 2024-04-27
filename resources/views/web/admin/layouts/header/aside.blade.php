@@ -163,6 +163,20 @@
                         <p>Users</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('admin.roles.index')}}"
+                       class="nav-link {{active_route_by_url('admin/roles*')}} ">
+                        <i class="bi bi-person-circle nav-icon"></i>
+                        <p>Roles</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('admin.permissions.index')}}"
+                       class="nav-link {{active_route_by_url('admin/permissions*')}} ">
+                        <i class="bi bi-person-circle nav-icon"></i>
+                        <p>Permissions</p>
+                    </a>
+                </li>
 
 
             </ul>

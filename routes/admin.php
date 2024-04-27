@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DonationController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\Content\{CategoryController, PostController};
@@ -60,3 +62,5 @@ Route::resource('donations', DonationController::class)->only('index','show','de
 Route::get('change-password', [LoginController::class, 'editPassword'])->name('password.edit');
 Route::post('change-password', [LoginController::class, 'updatePassword'])->name('password.update');
 Route::resource('users', UserController::class)->except('show');
+Route::resource('roles', RoleController::class);
+Route::resource('permissions', PermissionController::class);
