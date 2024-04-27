@@ -25,7 +25,8 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu"
+                data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item {{active_route_by_name('admin.index',true)}}">
@@ -123,13 +124,13 @@
                     </ul>
 
                 </li>
-                    <li class="nav-item">
-                        <a href="{{route('admin.clients.index')}}"
-                           class="nav-link {{active_route_by_url('admin/clients*')}} ">
-                            <i class="bi bi-people nav-icon "></i>
-                            <p>Clients</p>
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a href="{{route('admin.clients.index')}}"
+                       class="nav-link {{active_route_by_url('admin/clients*')}} ">
+                        <i class="bi bi-people nav-icon "></i>
+                        <p>Clients</p>
+                    </a>
+                </li>
 
                 <li class="nav-item">
                     <a href="{{route('admin.contacts.index')}}"
@@ -148,15 +149,26 @@
                 </li>
 
                 <li class="nav-item">
-                                    <a href="{{route('admin.password.edit')}}"
-                                       class="nav-link {{active_route_by_url('admin/change-password*')}} ">
-                                        <i class="bi bi-key nav-icon "></i>
-                                        <p>Change Password</p>
-                                    </a>
-                                </li>
+                    <a href="{{route('admin.password.edit')}}"
+                       class="nav-link {{active_route_by_url('admin/change-password*')}} ">
+                        <i class="bi bi-key nav-icon "></i>
+                        <p>Change Password</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{route('admin.users.index')}}"
+                       class="nav-link {{active_route_by_url('admin/users*')}} ">
+                        <i class="bi bi-person-circle nav-icon"></i>
+                        <p>Users</p>
+                    </a>
+                </li>
 
 
             </ul>
+
+
+
         </nav>
         <!-- /.sidebar-menu -->
     </div>
