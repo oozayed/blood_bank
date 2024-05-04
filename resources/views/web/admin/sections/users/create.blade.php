@@ -17,6 +17,16 @@
             {{Form::password('password',['class'=>'form-control'])}}
             {{ Form::label('password_confirmation', 'Password Confirmation') }}
             {{Form::password('password_confirmation',['class'=>'form-control'])}}
+            <div class="form-group">
+                {{ Form::label('roles', 'Roles') }}
+                <br>
+            @foreach($roles as $role)
+                    <label>
+                        {{Form::checkbox('roles[]',$role->id,null)}}
+                        {{$role->name}}
+                    </label>
+                    <br>
+                @endforeach
         </div>
         @error('name')
         <span class="text-danger">{{$message}}</span>

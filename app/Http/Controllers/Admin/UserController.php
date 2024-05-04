@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -24,7 +25,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('web.admin.sections.users.create');
+        $roles = Role::all();
+        return view('web.admin.sections.users.create', compact('roles'));
     }
 
     /**
@@ -34,7 +36,17 @@ class UserController extends Controller
     {
         $data = $request->validated();
         $data['password'] = bcrypt($data['password']);
-        User::create($data);
+
+        $user = User::create($data);
+
+        $roles = Role::find($request->roles);
+        if (!$roles) {
+            flash('Roles not found')->error()->important();
+            return redirect()->route('admin.users.index');
+        }
+
+        $user->assignRole($roles);
+
         flash('User added successfully')->success()->important();
         return redirect()->route('admin.users.index');
 
@@ -47,7 +59,8 @@ class UserController extends Controller
     public function edit(string $id)
     {
         $user = User::findOrFail($id);
-        return view('web.admin.sections.users.edit', compact('user'));
+        $roles = Role::all();
+        return view('web.admin.sections.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -59,16 +72,28 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'password' => 'nullable|string|min:8|confirmed',
+            'roles' => 'required|array|max:1,exists:roles,id',
         ]);
         if ($request->filled('password')) {
             $data['password'] = bcrypt($data['password']);
         } else {
             unset($data['password']);
         }
-        User::findOrFail($id)->update($data);
+
+        $user = User::findOrFail($id);
+        $user->update($data);
+
+        // Detach all roles and then assign the new ones
+        $user->roles()->detach();
+        $roles = Role::find($request->roles);
+        if (!$roles) {
+            flash('Roles not found')->error()->important();
+            return redirect()->route('admin.users.index');
+        }
+        $user->assignRole($roles);
+
         flash('User updated successfully')->success()->important();
         return redirect()->route('admin.users.index');
-
     }
 
     /**

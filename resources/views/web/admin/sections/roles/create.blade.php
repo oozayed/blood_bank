@@ -19,7 +19,7 @@
         <div class="form-group">
             {{ Form::label('permissions', 'Permissions') }}
             <br>
-            @foreach($permissions as $permission)
+        @foreach($permissions as $permission)
                 <label>
                     {{Form::checkbox('permissions[]',$permission->id,null)}}
                     {{$permission->name}}

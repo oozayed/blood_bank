@@ -36,7 +36,16 @@ class RoleController extends Controller
             'name' => 'required|string|max:255|unique:roles,name',
             'permissions' => 'required|array|min:1',
         ]);
-        Role::create($request->only('name'));
+        $permissions = Permission::find($request->permissions);
+
+        if (!$permissions) {
+            flash('Permissions not found')->error()->important();
+            return redirect()->route('admin.roles.index');
+        }
+
+        $role = Role::create($request->only('name'));
+        $role->syncPermissions($permissions);
+        $role->save();
         flash('Role created successfully')->success()->important();
         return redirect()->route('admin.roles.index');
     }
@@ -46,7 +55,7 @@ class RoleController extends Controller
      */
     public function show(string $id)
     {
-        //
+
     }
 
     /**
@@ -54,7 +63,10 @@ class RoleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $role = Role::findOrFail($id);
+//        $rolePermissions = $role->permissions->pluck('id')->toArray();
+        $permissions = Permission::all();
+        return view('web.admin.sections.roles.edit', compact('role', 'permissions'));
     }
 
     /**
@@ -62,7 +74,23 @@ class RoleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255|unique:roles,name,' . $id,
+            'permissions' => 'required|array|min:1',
+        ]);
+        $permissions = Permission::find($request->permissions);
+
+        if (!$permissions) {
+            flash('Permissions not found')->error()->important();
+            return redirect()->route('admin.roles.index');
+        }
+
+        $role = Role::findOrFail($id);
+        $role->update($request->only('name'));
+        $role->syncPermissions($permissions);
+        $role->save();
+        flash('Role updated successfully')->success()->important();
+        return redirect()->route('admin.roles.index');
     }
 
     /**
@@ -71,5 +99,12 @@ class RoleController extends Controller
     public function destroy(string $id)
     {
         //
+        $role = Role::findOrFail($id);
+        foreach ($role->permissions as $permission) {
+            $role->revokePermissionTo($permission);
+        }
+        $role->delete();
+        flash('Role deleted successfully')->error()->important();
+        return redirect()->route('admin.roles.index');
     }
 }
