@@ -17,7 +17,6 @@
                 <tr>
                     <th class="text-center" scope="col">#</th>
                     <th class="text-center" scope="col">Name</th>
-                    <th class="text-center" scope="col">Guard</th>
                     <th class="text-center" scope="col">Action</th>
                 </tr>
                 </thead>
@@ -28,7 +27,6 @@
                             {{--                            scope="row">{{ ($users->currentPage() - 1) * $users->perPage() + $loop->iteration }}</th>--}}
                             scope="row">{{$loop->iteration }}</th>
                         <td class="text-center">{{$role->name}}</td>
-                        <td class="text-center">{{$role->guard_name}}</td>
                         <td class="text-center">
                             <a href="{{route('admin.roles.edit',$role->id)}}"
                                class="btn btn-primary">edit</a>
