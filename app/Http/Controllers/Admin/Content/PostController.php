@@ -13,6 +13,13 @@ use Intervention\Image\Image;
 
 class PostController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:content.posts.index|content.posts.show|content.posts.create|content.posts.store|content.posts.edit|content.posts.update|content.posts.destroy')->only('index', 'show');
+        $this->middleware('permission:content.posts.create')->only('create', 'store');
+        $this->middleware('permission:content.posts.edit')->only('edit', 'update');
+        $this->middleware('permission:content.posts.destroy')->only('destroy');
+    }
     use ImageTrait;
     /**
      * Display a listing of the resource.
