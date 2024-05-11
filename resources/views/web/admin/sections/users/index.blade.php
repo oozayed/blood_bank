@@ -20,6 +20,7 @@
                     <th class="text-center" scope="col">#</th>
                     <th class="text-center" scope="col">Name</th>
                     <th class="text-center" scope="col">Email</th>
+                    <th class="text-center" scope="col">Role</th>
                     <th class="text-center" scope="col">Action</th>
                 </tr>
                 </thead>
@@ -30,6 +31,11 @@
                             scope="row">{{ ($users->currentPage() - 1) * $users->perPage() + $loop->iteration }}</th>
                         <td class="text-center">{{$user->name}}</td>
                         <td class="text-center">{{$user->email}}</td>
+                        <td class="text-center">
+                            @foreach($user->roles as $role)
+                                <span class="badge badge-primary">{{$role->name}}</span>
+                            @endforeach
+                        </td>
                         <td class="text-center">
                             <a href="{{route('admin.users.edit',$user->id)}}"
                                class="btn btn-primary">edit</a>

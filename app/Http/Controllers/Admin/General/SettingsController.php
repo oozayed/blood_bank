@@ -8,6 +8,10 @@ use Rawilk\Settings\Facades\Settings;
 
 class SettingsController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:admin.general.settings.index|admin.general.settings.update')->only('index','update');
+    }
     public function index()
     {
         return view('web.admin.sections.general.settings');
