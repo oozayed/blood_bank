@@ -10,6 +10,13 @@ use Illuminate\Http\Request;
 
 class CityController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:admin.general.cities.index|admin.general.cities.create|admin.general.cities.edit|admin.general.cities.destroy')->only('index');
+        $this->middleware('permission:admin.general.cities.create')->only('create','store');
+        $this->middleware('permission:admin.general.cities.edit')->only('edit','update');
+        $this->middleware('permission:admin.general.cities.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      */

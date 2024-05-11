@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class BloodTypeController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:admin.general.blood-types.index|admin.general.blood-types.create|admin.general.blood-types.edit|admin.general.blood-types.destroy')->only('index');
+        $this->middleware('permission:admin.general.blood-types.create')->only('create','store');
+        $this->middleware('permission:admin.general.blood-types.edit')->only('edit','update');
+        $this->middleware('permission:admin.general.blood-types.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      */
