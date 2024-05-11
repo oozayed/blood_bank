@@ -15,10 +15,10 @@ class PostController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:content.posts.index|content.posts.show|content.posts.create|content.posts.store|content.posts.edit|content.posts.update|content.posts.destroy')->only('index', 'show');
-        $this->middleware('permission:content.posts.create')->only('create', 'store');
-        $this->middleware('permission:content.posts.edit')->only('edit', 'update');
-        $this->middleware('permission:content.posts.destroy')->only('destroy');
+        $this->middleware('permission:admin.content.posts.index|content.posts.show|admin.content.posts.create|admin.content.posts.store|admin.content.posts.edit|admin.content.posts.update|admin.content.posts.destroy')->only('index', 'show');
+        $this->middleware('permission:admin.content.posts.create')->only('create', 'store');
+        $this->middleware('permission:admin.content.posts.edit')->only('edit', 'update');
+        $this->middleware('permission:admin.content.posts.destroy')->only('destroy');
     }
     use ImageTrait;
     /**
