@@ -25,7 +25,7 @@
 
     <title>Blood Bank</title>
 </head>
-<body>
+<body class="{{$bodyClass ?? ''}}">
 <!--upper-bar-->
 <div class="upper-bar">
     <div class="container">
@@ -103,7 +103,7 @@
                 <!--not a member-->
                 <div class="accounts">
                     <a href="create-account.blade.php" class="create">إنشاء حساب جديد</a>
-                    <a href="signin-account.blade.php" class="signin">الدخول</a>
+                    <a href="{{route('site.login')}}" class="signin">الدخول</a>
                 </div>
 
                 <!--I'm a member

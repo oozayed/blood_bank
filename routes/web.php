@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Site\AuthController;
 use App\Http\Controllers\Site\MainController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,8 @@ Route::get('/',[MainController::class, 'index'])->name('site.index');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::controller(AuthController::class)->group(function () {
+    Route::get('login','login')->name('site.login');
+    Route::post('login','handleLogin')->name('site.handleLogin');
+});
